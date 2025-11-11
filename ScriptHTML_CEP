@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalhes do CEP: {{payload.cep}}</title>
+</head>
+<body>
+    <h1>Resultado da Busca de CEP</h1>
+    {{#payload}}
+        <p><strong>CEP:</strong> {{cep}}</p>
+        <p><strong>Rua/Avenida:</strong> {{street}}</p>
+        <p><strong>Bairro:</strong> {{neighborhood}}</p>
+        <p><strong>Cidade:</strong> {{city}}</p>
+        <p><strong>Estado (UF):</strong> {{state}}</p>
+        <hr>
+    {{/payload}}
+    <a href="/">Voltar</a>
+</body>
+</html>
