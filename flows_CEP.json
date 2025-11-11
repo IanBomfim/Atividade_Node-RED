@@ -1,0 +1,102 @@
+[
+    {
+        "id": "e66dc3be54ed3e42",
+        "type": "tab",
+        "label": "Fluxo 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "220fb0c6c944944f",
+        "type": "http in",
+        "z": "e66dc3be54ed3e42",
+        "name": "",
+        "url": "/cep/:cep",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 110,
+        "y": 60,
+        "wires": [
+            [
+                "c47fd2d213b86353"
+            ]
+        ]
+    },
+    {
+        "id": "c47fd2d213b86353",
+        "type": "function",
+        "z": "e66dc3be54ed3e42",
+        "name": "function 1",
+        "func": "const cep = msg.req.params.cep;\nmsg.url = \"https://brasilapi.com.br/api/cep/v2/\" + cep;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 60,
+        "wires": [
+            [
+                "28946b9cf55c369b"
+            ]
+        ]
+    },
+    {
+        "id": "28946b9cf55c369b",
+        "type": "http request",
+        "z": "e66dc3be54ed3e42",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 460,
+        "y": 60,
+        "wires": [
+            [
+                "192227a43110090b"
+            ]
+        ]
+    },
+    {
+        "id": "192227a43110090b",
+        "type": "template",
+        "z": "e66dc3be54ed3e42",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Detalhes do CEP: {{payload.cep}}</title>\n</head>\n<body>\n    <h1>Resultado da Busca de CEP</h1>\n    {{#payload}}\n        <p><strong>CEP:</strong> {{cep}}</p>\n        <p><strong>Rua/Avenida:</strong> {{street}}</p>\n        <p><strong>Bairro:</strong> {{neighborhood}}</p>\n        <p><strong>Cidade:</strong> {{city}}</p>\n        <p><strong>Estado (UF):</strong> {{state}}</p>\n        <hr>\n    {{/payload}}\n    <a href=\"/\">Voltar</a>\n</body>\n</html>",
+        "output": "str",
+        "x": 640,
+        "y": 60,
+        "wires": [
+            [
+                "ac9b17f918a1fdf2"
+            ]
+        ]
+    },
+    {
+        "id": "ac9b17f918a1fdf2",
+        "type": "http response",
+        "z": "e66dc3be54ed3e42",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 60,
+        "wires": []
+    }
+]
