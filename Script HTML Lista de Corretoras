@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Busca Corretoras</title>
+        <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <h1>Catalogo de corretoras</h1>
+     <h2>Catalogo com todas as corretoras disponíveis na BrazilAPI</h2>
+    <ul>
+        {{#payload}}
+            <li><strong>{{nome_social}}</strong> - {{municipio}}/{{cnpj}}</li>
+        {{/payload}}
+    </ul>
+</body>
+</html>
